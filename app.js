@@ -2,25 +2,19 @@ const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const socketio = require('socket.io')(http);
+const checkToken = require('./tokenUtil')
 app.set('socketio', socketio);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const defaultSchema = require('./schemas/defaultSchema');
+const port = process.env.app_port || 9999;
 
-const port = process.env.port || 9999;
+app.use('/login', require('./routes/login.js'))
 
-app.post('/', async (req, res)=> {
-    const schemaObject = new defaultSchema(req.body)
-    console.log(req.body)
-    await schemaObject.save()
-    res.status(200).send('insertion completed')
-})
+app.use('/entries', checkToken, require('./routes/entries.js'))
 
-app.get('/', async (req, res)=> {
-    res.status(200).json(await defaultSchema.find({}, {_id: false, __v: false}))
-})
+app.use('/users', checkToken, require('./routes/users.js'))
 
 app.use((req, res) => {
     res.status(404).send('Invalid request');
