@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Users</th>
+                <th>Entries</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><button type="button" id="getAllUsers">Get all</button></th>
+                <th><button type="button" id="getAllEntities">Get all</button></th>
+            </tr>
+            <tr>
+                <th>
+                    <form id="userForm">
+                        <input type="text" class="form-control" id="username" placeholder="Enter Username">
+                        <input type="text" class="form-control" id="userPassword" placeholder="Enter Password">
+                        <button type="submit" id="addUser">Add</button>
+                    </form>
+                </th>
+                <th>
+                    <form id="entryForm">
+                        <input type="text" class="form-control" id="entryBody" placeholder="Enter Json">
+                        <button type="submit" id="addEntity">Add</button>
+                    </form>
+
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <form id="userDeleteForm">
+                        <input type="text" class="form-control" id="usernameForDelete" placeholder="Enter Username">
+                        <button type="submit" id="deleteUserButton">Delete</button>
+                    </form>
+                </th>
+                <th><button type="button" id="deleteEntity">Delete</button></th>
+            </tr>
+        </tbody>
+    </table>
+    <ul id="multiList"></ul>
+</body>
+<script type="text/javascript" src="/js/myScript.js"></script>
+</html>

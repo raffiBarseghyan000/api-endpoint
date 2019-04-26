@@ -6,13 +6,21 @@ const router = express.Router();
 const path = process.cwd()
 const userSchema = require(`${path}/schemas/userSchema`)
 
-router.get('/', async (req, res)=> {
+router.post('/', async (req, res)=> {
     let username = req.body.username;
     let password = req.body.password;
     // For the given username fetch user from DB
     let mockedUser = await userSchema.findOne({username: username})
-    let mockedUsername = mockedUser.username;
-    let mockedPassword = mockedUser.password;
+    let mockedUsername
+    let mockedPassword
+    if(mockedUser == null) {
+        mockedUsername = "";
+        mockedPassword = "";
+    }
+    else {
+        mockedUsername = mockedUser.username;
+        mockedPassword = mockedUser.password;
+    }
 
     if (username && password) {
         if (username === mockedUsername && password === mockedPassword) {

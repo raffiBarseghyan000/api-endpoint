@@ -8,7 +8,13 @@ app.set('socketio', socketio);
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use(express.static('public'));
+
 const port = process.env.app_port || 9999;
+
+app.get('/', function(req, res) {
+    res.sendFile( process.cwd() + '/public/pages/login.html')
+})
 
 app.use('/login', require('./routes/login.js'))
 
